@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { faker } from '@faker-js/faker';
 
 import { Hashtag, HashtagExtra } from '../../../shared/ui/hashtag';
@@ -7,17 +8,22 @@ import { MAX_HASHTAGS } from '../lib/const';
 import getDate from '../lib/get-date';
 import { TodoType } from '../lib/types';
 import classes from './todo.module.sass';
+import { Checkbox } from '../../../shared/ui/checkbox';
 
 type TodoProps = {
   todo: TodoType,
 };
 
 export const Todo = ({todo}: TodoProps): JSX.Element => {
+  const checkboxRef = useRef<HTMLInputElement>(null);
+
   return (
     <li className={classes.wrapper}>
       <div className={classes.card}>
         <div className={classes.header}>
-          {todo.title}
+          <span>
+            <Checkbox ref={checkboxRef} state={todo.completed} />{todo.title}
+          </span>
         </div>
 
         { false && <div className={classes.time}></div> }
