@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { Todo, TodoType } from '../../../entities/todo'
+import { Button } from '../../../shared/ui/button';
 
 import classes from './todo-list.module.sass';
 
@@ -24,7 +25,12 @@ export const TodoList = (): JSX.Element => {
   return (
     <section className={classes.wrapper}>
       <div className={classes.header}>
+        <div className={classes.date}>Today</div>
 
+        <div className={classes.buttons}>
+          <Button type='plus' />
+          <Button type='count' data={String(todos.length)} />
+        </div>
       </div>
 
       <ul className={classes.list}>
