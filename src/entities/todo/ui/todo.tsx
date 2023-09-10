@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker';
 
+import { Hashtag, HashtagExtra } from '../../../shared/ui/hashtag';
+
+import HashtagList from '../model/hashtag-list/hashtag-list';
+import { MAX_HASHTAGS } from '../lib/const';
 import getDate from '../lib/get-date';
 import { TodoType } from '../lib/types';
 import classes from './todo.module.sass';
@@ -28,7 +32,19 @@ export const Todo = ({todo}: TodoProps): JSX.Element => {
         </div>
 
         <div className={classes.footer}>
-          
+          <div className={classes.hashtagList}>
+            {
+              HashtagList
+                .slice(0, MAX_HASHTAGS)
+                .map((hashtag) => <Hashtag key={hashtag.text} text={hashtag.text} type={hashtag.type} />)
+            }
+
+            <HashtagExtra count={HashtagList.length - MAX_HASHTAGS} />
+          </div>
+
+          <div className={classes.avatar}>
+            <img height={24} width={24} src="/img/avatar.png" alt="User avatar" />
+          </div>
         </div>
       </div>
     </li>
