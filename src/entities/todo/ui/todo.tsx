@@ -22,7 +22,7 @@ export const Todo = forwardRef((props: TodoProps, ref?: React.ForwardedRef<HTMLL
       <div className={classes.card}>
         <div className={classes.header}>
           <span>
-            <Checkbox ref={checkboxRef} state={props.todo.completed} />{props.todo.title}
+            <Checkbox ref={checkboxRef} state={props.todo.completed} />{props.todo.id + ' ' + props.todo.title}
           </span>
         </div>
 

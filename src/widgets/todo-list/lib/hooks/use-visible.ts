@@ -5,10 +5,10 @@ export const useVisible = (
   options = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.1,
+    threshold: 0.5,
   }
 ) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
     const {current: elementRef} = ref;

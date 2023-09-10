@@ -14,20 +14,8 @@ const TODOS_PER_PAGE = 10;
 export const TodoList = (): JSX.Element => {
   const todoRef = useRef<HTMLLIElement>(null);
   const [todos, setTodos] = useState<TodoType[]>( [] );
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
   const isFetching = useVisible(todoRef);
-
-  useEffect(() => {
-    axios.get<TodoType[]>(
-      `?_page=1&_limit=${TODOS_PER_PAGE}`,
-      {
-        baseURL: BACKEND_URL,
-        timeout: REQUEST_TIMEOUT,
-      }
-    ).then(( {data} ) => {
-      setTodos(data);
-    });
-  }, []);
 
   useEffect(() => {
     if (isFetching) {
@@ -66,7 +54,7 @@ export const TodoList = (): JSX.Element => {
             <Todo
               todo={todo}
               key={todo.id}
-              ref={index === (TODOS_PER_PAGE - 1) * (currentPage - 1) ? todoRef : undefined} />
+              ref={index === TODOS_PER_PAGE * (currentPage - 1) - 1 ? todoRef : undefined} />
           )
         }
       </ul>
