@@ -6,14 +6,12 @@ import classes from './oops.module.sass';
 
 type OopsProps = {
   type: 'todos' | 'error-boundary';
-  arg?: string;
 }
 
-export function Oops({type, arg = 'null'}: OopsProps): JSX.Element {
+export function Oops({type}: OopsProps): JSX.Element {
   const handleOopsClick = () => {
     switch (type) {
       case 'todos':
-        // dispatch(fetchCatalog());
         break;
       case 'error-boundary':
         return <Navigate to={AppRoute.Main} />;
