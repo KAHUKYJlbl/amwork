@@ -49,7 +49,7 @@ export const TodoList = (): JSX.Element => {
             <Todo
               todo={todo}
               key={todo.id}
-              ref={index === (TODOS_PER_PAGE - 1) * currentPage ? todoRef : undefined} />
+              ref={index === TODOS_PER_PAGE * (currentPage - 1) ? todoRef : undefined} />
           )
         }
       </ul>
