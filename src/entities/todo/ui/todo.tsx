@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { faker } from '@faker-js/faker';
 
 import { Hashtag, HashtagExtra } from '../../../shared/ui/hashtag';
@@ -14,15 +14,15 @@ type TodoProps = {
   todo: TodoType,
 };
 
-export const Todo = ({todo}: TodoProps): JSX.Element => {
+export const Todo = forwardRef((props: TodoProps, ref?: React.ForwardedRef<HTMLLIElement>): JSX.Element => {
   const checkboxRef = useRef<HTMLInputElement>(null);
 
   return (
-    <li className={classes.wrapper}>
+    <li className={classes.wrapper} ref={ref}>
       <div className={classes.card}>
         <div className={classes.header}>
           <span>
-            <Checkbox ref={checkboxRef} state={todo.completed} />{todo.title}
+            <Checkbox ref={checkboxRef} state={props.todo.completed} />{props.todo.title}
           </span>
         </div>
 
@@ -55,4 +55,4 @@ export const Todo = ({todo}: TodoProps): JSX.Element => {
       </div>
     </li>
   )
-};
+});
