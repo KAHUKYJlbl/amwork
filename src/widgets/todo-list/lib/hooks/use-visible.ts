@@ -8,7 +8,7 @@ export const useVisible = (
     threshold: 0.1,
   }
 ) => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const {current: elementRef} = ref;
